@@ -1,20 +1,22 @@
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Appointment from './Components/Appointment/Appointment/Appointment';
+import Dashboard from './Components/Dashboard/Dashboard';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
 import Register from './Components/Login/Register/Register';
 import NoPage from './Components/NoPage/NoPage';
 import ScrollButton from './Components/ScrollButton/ScrollButton';
-import AuthProvider from './context/AuthProvider';
+import PrivateRoute from './context/PrivateRoute/PrivateRoute';
+
 
 
 function App() {
   return (
-    <div className="App">
-   <AuthProvider>
-   <BrowserRouter>
+    <div className='App' >
+   
+  
      <Routes>
     
 
@@ -23,14 +25,21 @@ function App() {
       <Route path='/appointment' element={<Appointment/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
-      {/* <Route path='/register  ' element={<Register/>}/> */}
+      <Route path='/dashboard' element={
+        <PrivateRoute>
+          <Dashboard></Dashboard>
+        </PrivateRoute>
+
+
+      }/>
+
       <Route path='*' element={<NoPage/>}/>
 
      </Routes>
      <ScrollButton></ScrollButton>
      
-     </BrowserRouter>
-   </AuthProvider>
+    
+   
     </div>
   );
 }

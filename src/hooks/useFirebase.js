@@ -1,7 +1,10 @@
 import { useState } from "react";
 import initializeFirebaseApp from "../Components/Login/Firebase/firebase.init";
-import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth,GoogleAuthProvider, createUserWithEmailAndPassword, signOut, onAuthStateChanged,signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+
 
 
 initializeFirebaseApp();
@@ -11,6 +14,15 @@ const useFirebase=()=>{
     const[isLoading,setIsLoading] = useState(true);
     const[authError,setAuthError] = useState('');
 
+
+    const provider =  new GoogleAuthProvider();
+
+
+     const location = useLocation();
+     const navigate = useNavigate();
+
+
+     const from = location.state?.from?.pathname || "/";
 
     const auth = getAuth();
 
@@ -33,6 +45,13 @@ const useFirebase=()=>{
     }
 
 
+    // sign in with google
+
+   
+
+    
+
+
   //login
   const logIn = (email,password)=>{
     setIsLoading(true);
@@ -40,6 +59,8 @@ const useFirebase=()=>{
   .then((userCredential) => {
     // Signed in 
     // const user = userCredential.user;
+    navigate(from, { replace: true });
+
     setAuthError('');
       
     // ...
@@ -56,6 +77,7 @@ const useFirebase=()=>{
     const unsubscribed = onAuthStateChanged(auth, (user) => {
         if (user) {
          setUser(user);
+         console.log(user);
         } else {
             setUser({});
           

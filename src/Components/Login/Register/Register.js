@@ -7,10 +7,15 @@ import { Alert, Button, CircularProgress, TextField, Typography } from '@mui/mat
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import useAuth from '../../../context/useAuth';
+import Navigation from '../../Home/Shared/Navigation';
 
 const Register = () => {
     const[LoginData,setLoginData] = useState({});
     const {registerUser,isLoading,user,authError} = useAuth();
+
+
+
+  
 
   const handleOnChange=e=>{
     const field = e.target.name;
@@ -35,15 +40,24 @@ const Register = () => {
 
   }
     return (
+     <> <Navigation></Navigation>
         <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid sx={{mt:20}} item md={6} xs={12}>
 
           <Typography variant="h6" gutterBottom>
-            Register
+            <Register></Register>
       </Typography>
 
     {  !isLoading &&  <><form onSubmit={handleOnSUbmit}>
+       <TextField
+         sx={{width:'75%',m:1}}
+         id="standard-basic"
+         label="Your name" 
+         name='name'
+         type='name'
+         onChange={handleOnChange}
+         variant="standard" />
        <TextField
          sx={{width:'75%',m:1}}
          id="standard-basic"
@@ -66,6 +80,7 @@ const Register = () => {
          sx={{width:'75%',m:1}} 
          id="outlined-password-input"
          label="Retype password" 
+         
          name='password2'
          type='password'
          onChange={handleOnChange}
@@ -106,7 +121,7 @@ const Register = () => {
           </Grid>
          
         </Grid>
-      </Box>
+      </Box></>
     );
 };
 

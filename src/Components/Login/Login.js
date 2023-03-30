@@ -4,14 +4,17 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import login from '../Home/images/login.png'
 import { Alert, Button, CircularProgress, TextField, Typography } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { useState } from 'react';
 import useAuth from '../../context/useAuth';
+import Navigation from '../Home/Shared/Navigation';
 
 const Login = () => {
 
   const[LoginData,setLoginData] = useState({});
-  const{isLoading,user,authError,logIn} = useAuth()
+  const{isLoading,user,authError,logIn} = useAuth();
+ 
+
 
   const handleOnChange=e=>{
     const field = e.target.name;
@@ -31,6 +34,9 @@ const Login = () => {
 
   }
     return (
+      <>
+      <Navigation></Navigation>
+      
         <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid sx={{mt:20}} item md={6} xs={12}>
@@ -85,7 +91,7 @@ const Login = () => {
          
         </Grid>
       </Box>
-  
+  </>
     );
 };
 

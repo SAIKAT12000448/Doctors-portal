@@ -1,5 +1,6 @@
 import {  Grid, Typography } from '@mui/material';
 import { Container } from '@mui/system';
+// import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import Booking from './Booking/Booking';
 
@@ -48,6 +49,22 @@ import Booking from './Booking/Booking';
 const AvailableAppointment = ({date}) => {
 
     const[bookings,setBookings]= useState([]);
+
+// query uses
+
+// const {data:bookings=[]} =
+            
+
+//             useQuery({querykey:['bookings'],
+//             queryFn:async()=>{
+                
+//             const res = await fetch('appointmentOption.json');
+//             const data = await res.json();
+//             return data;
+// }
+// })
+
+
     useEffect(()=>{
         fetch('appointmentOption.json')
         .then(res=>res.json())
