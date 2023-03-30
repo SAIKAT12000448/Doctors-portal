@@ -1,5 +1,6 @@
 
 import React, { Fragment } from 'react';
+import Register from '../Login/Register/Register';
 import ScrollButton from '../ScrollButton/ScrollButton';
 import AppointmentBanner from './AppointmentBanner/AppointmentBanner';
 import Banner from './Banner/Banner';
@@ -15,6 +16,7 @@ const Home = () => {
         <div>
           <Fragment>
           <Navigation></Navigation>
+          
             <Banner></Banner>
             <Contact></Contact>
             <Services></Services>

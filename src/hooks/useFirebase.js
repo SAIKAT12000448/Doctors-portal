@@ -1,6 +1,6 @@
 import { useState } from "react";
 import initializeFirebaseApp from "../Components/Login/Firebase/firebase.init";
-import { getAuth,GoogleAuthProvider, createUserWithEmailAndPassword, signOut, onAuthStateChanged,signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -8,14 +8,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 
 initializeFirebaseApp();
-
+  
 const useFirebase=()=>{
     const[user,setUser] = useState({});
     const[isLoading,setIsLoading] = useState(true);
     const[authError,setAuthError] = useState('');
 
 
-    const provider =  new GoogleAuthProvider();
+  
 
 
      const location = useLocation();
@@ -33,6 +33,7 @@ const useFirebase=()=>{
   .then((userCredential) => {
     // Signed in 
     // const user = userCredential.user;
+    // navigate(from, { replace: true });
     setAuthError('');
     // ...
   })

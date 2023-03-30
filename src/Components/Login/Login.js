@@ -68,7 +68,11 @@ const Login = () => {
  
           <Button type='submit' sx={{width:'75%',m:1}} variant='contained'>Login</Button>
         </form>
-        <NavLink style={{textDecoration:'none'}} to='/register'><Button variant='text'>New User? Please Register!</Button></NavLink></>
+        <NavLink to='/register'>New User? Please Register!</NavLink>
+{/*           
+        <NavLink style={{textDecoration:'none'}} to='/register'><Button variant='text'>New User? Please Register!</Button></NavLink> */}
+        
+        </>
       }
       {
         isLoading && <CircularProgress/>
