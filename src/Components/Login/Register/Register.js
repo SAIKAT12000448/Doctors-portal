@@ -14,6 +14,7 @@ const handleOnChange = (e)=>{
 
   const field = e.target.name;
   const value = e.target.value;
+  console.log(field,value)
   const newLoginData = {...LoginData};
   newLoginData[field] = value;
   setLoginData(newLoginData)
@@ -25,7 +26,7 @@ const handleOnSUbmit=e=>{
     alert('password did not match!')
     return
 }
-registerUser(LoginData.email,LoginData.password)
+registerUser(LoginData.name,LoginData.email,LoginData.password)
 
   e.preventDefault();
 
@@ -53,6 +54,8 @@ registerUser(LoginData.email,LoginData.password)
      type='name'
      onChange={handleOnChange}
      variant="standard" />
+
+
    <TextField
      sx={{width:'75%',m:1}}
      id="standard-basic"

@@ -16,6 +16,7 @@ const Calender = ({date,setDate}) => {
 
     return (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
+        
       <StaticDatePicker
         displayStaticWrapperAs="desktop"
         

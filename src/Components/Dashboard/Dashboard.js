@@ -1,9 +1,11 @@
 import React from 'react';
+import Navigation from '../Home/Shared/Navigation'
+
 
 const Dashboard = () => {
     return (
         <div>
-            coming soon....
+          <Navigation></Navigation>
         </div>
     );
 };

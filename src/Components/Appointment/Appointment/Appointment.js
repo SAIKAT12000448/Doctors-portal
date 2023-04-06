@@ -2,13 +2,11 @@ import React from 'react';
 import Navigation from '../../Home/Shared/Navigation';
 import AppointmentHeader from './AppointmentHeader';
 import AvailableAppointment from './AvailableAppointment';
-import dayjs from 'dayjs';
 import Footer from '../../Home/Shared/Footer';
 
 
 const Appointment = () => {
-    var today = new Date();
-    const [date, setDate] = React.useState(dayjs(today));
+        const [date, setDate] = React.useState(new Date());
     return (
         <div>
             <Navigation></Navigation>

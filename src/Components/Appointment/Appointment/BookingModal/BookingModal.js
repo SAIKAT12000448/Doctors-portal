@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -6,6 +6,9 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
+import useAuth from '../../../../context/useAuth';
+import { toast } from 'react-hot-toast';
+
 
 
 const style = {
@@ -21,35 +24,82 @@ const style = {
 };
 
 
-const BookingModal = ({handleModalClose,booking,open,date,slots}) => {
-  const[bookingData,setBookingData] = useState({});
+const BookingModal = ({handleModalClose,booking,open,date,slots,refetch}) => {
+  const {name:treatmentname} = booking;
+  const{user} = useAuth();
 
+  // const[bookingData,setBookingData] = useState({email:user.email});
  
+
+
+
+
   const handleBookingSubmit=e=>{
    
+  const form = e.target;
 
+  const slot= form.time.value;
+  const name = form.name.value;
+  const email = form.email.value;
+  const phone = form.phone.value;
+  const date = form.date.value;
+  console.log(slot,name,email,phone,date);
+
+
+   const bookingData={
+    treatmentname,
+    name,
+    slot,
+    email,
+    phone,
+    date
+
+   }
+
+  
+
+
+  
+    fetch("http://localhost:5000/bookingmodal",{
+      method:"POST",
+      headers:{
+        'content-type' : 'application/json'
+      },
+      body:JSON.stringify(bookingData)
+  
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data)
+       if(data.acknowledged){
+         handleModalClose()
+        toast.success('Successfully created!');
+        refetch();
+      }
+      else{
+          alert(data.message)
+      }
+      
+    });
     
-    
-
-
     e.preventDefault();
-    alert('submitting')
-    handleModalClose()
-
-
   }
-    
+  
 
-  const handleOnBlur =(e)=>{
-    const field = e.target.name;
-    const value = e.target.value;
-    const newBooking = {...bookingData};
-    newBooking[field] = value;
-    setBookingData(newBooking)
-    console.log(newBooking)
-    console.log(field,value);
 
-  }
+
+
+  // const handleOnBlur =(e)=>{
+  //   const field = e.target.name;
+  //   const value = e.target.value;
+  //   const newBooking = {...bookingData};
+  //   newBooking[field] = value;
+  //   setBookingData(newBooking)
+  //   console.log(newBooking)
+  //   console.log(field,value);
+  //   console.log(bookingData);
+
+  // }
     return (
         <div>
              <Modal
@@ -77,16 +127,16 @@ const BookingModal = ({handleModalClose,booking,open,date,slots}) => {
           
          
 
-<select onBlur={handleOnBlur}  style={{margin:'7px',padding:'10px',width:'90%'}} name="time" id="time">
+<select   style={{margin:'7px',padding:'10px',width:'90%'}} name="time" id="time">
 
 { slots.map((slot,i)=><option key={i}   value={slot}>{slot}</option>)}
 </select>
           <TextField         
           sx={{width:"90%" ,m:1 }}
           id="outlined-size-small"
-          defaultValue="Your Name"
           name='name'
-          onBlur={handleOnBlur}
+          defaultValue={user?.displayName}
+          
           size="small"
         />
             <TextField
@@ -94,9 +144,9 @@ const BookingModal = ({handleModalClose,booking,open,date,slots}) => {
           
           sx={{width:"90%" ,m:1 }}
           id="outlined-size-small"
-          defaultValue="Your Email"
+          defaultValue={user?.email}
           name='email'
-          onBlur={handleOnBlur}
+    
           size="small"
         />
             <TextField
@@ -104,9 +154,8 @@ const BookingModal = ({handleModalClose,booking,open,date,slots}) => {
           
           sx={{width:"90%" ,m:1 }}
           id="outlined-size-small"
-          defaultValue="Phone Number"
+          placeholder="Phone Number"
           name='phone'
-          onBlur={handleOnBlur}
           size="small"
         />
 
@@ -117,7 +166,6 @@ const BookingModal = ({handleModalClose,booking,open,date,slots}) => {
           id="outlined-size-small"
           defaultValue={date.toString()}
           name='date'
-          onBlur={handleOnBlur}
           size="small"
         />
         <div style={{textAlign:'right',width:'90%'}}>

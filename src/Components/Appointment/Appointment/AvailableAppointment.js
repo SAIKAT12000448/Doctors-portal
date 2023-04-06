@@ -1,8 +1,9 @@
 import {  Grid, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 // import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
 import Booking from './Booking/Booking';
+import { useQuery } from 'react-query';
 
 
 
@@ -48,28 +49,29 @@ import Booking from './Booking/Booking';
 // ]
 const AvailableAppointment = ({date}) => {
 
-    const[bookings,setBookings]= useState([]);
+    // const[bookings,setBookings]= useState([]);
 
 // query uses
 
-// const {data:bookings=[]} =
+const {data:bookings=[],refetch} =
             
-
-//             useQuery({querykey:['bookings'],
-//             queryFn:async()=>{
                 
-//             const res = await fetch('appointmentOption.json');
-//             const data = await res.json();
-//             return data;
-// }
-// })
+            useQuery({
+            queryKey: ['bookings',date],
+            queryFn:async()=>{
+                
+            const res = await fetch(`http://localhost:5000/appointmentOptions?date=${date}`);
+            const data = await res.json();
+            return data;
+}
+})
 
 
-    useEffect(()=>{
-        fetch('appointmentOption.json')
-        .then(res=>res.json())
-        .then(data=>setBookings(data))
-    },[])
+    // useEffect(()=>{
+    //     fetch(`http://localhost:5000/appointmentOptions?date=${date}`)
+    //     .then(res=>res.json())
+    //     .then(data=>setBookings(data))
+    // },[])
    
     
     return (
@@ -82,6 +84,7 @@ const AvailableAppointment = ({date}) => {
                 key={booking._id}
                 booking={booking}
                 date={date}
+                refetch={refetch}
                 ></Booking>)
             }
 

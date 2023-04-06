@@ -1,6 +1,6 @@
 import { useState } from "react";
 import initializeFirebaseApp from "../Components/Login/Firebase/firebase.init";
-import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged,signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -27,13 +27,27 @@ const useFirebase=()=>{
     const auth = getAuth();
 
     // register user
-    const registerUser =(email,password)=>{
+    const registerUser =(name,email,password)=>{
+      console.log(name);
       setIsLoading(true);
-        createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth,email, password)
   .then((userCredential) => {
     // Signed in 
+    const newLoginData={email,displayName:name}
+    setUser(newLoginData)
     // const user = userCredential.user;
-    // navigate(from, { replace: true });
+    
+
+    updateProfile(auth.currentUser,{
+      displayName:name
+      
+    }).then(() => {
+      // Update successful
+    }).catch((error) => {
+      // Error occurred
+    });
+
+    navigate(from, { replace: true });
     setAuthError('');
     // ...
   })
@@ -60,6 +74,7 @@ const useFirebase=()=>{
   .then((userCredential) => {
     // Signed in 
     // const user = userCredential.user;
+
     navigate(from, { replace: true });
 
     setAuthError('');
