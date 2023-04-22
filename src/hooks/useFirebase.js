@@ -37,7 +37,7 @@ const useFirebase=()=>{
     const newLoginData={email,displayName:name}
     setUser(newLoginData)
     // const user = userCredential.user;
-    
+    saveUser(email,name,"POST");
     updateProfile(auth.currentUser,{
       displayName:name
       
@@ -98,7 +98,8 @@ const useFirebase=()=>{
       setIsLoading(true);
       // const credential = GoogleAuthProvider.credentialFromResult(result);
       // const token = credential.accessToken;
-      // const user = result.user;
+      const user = result.user;
+      saveUser(user.email,user.displayName,"PUT");
 
       navigate(from, { replace: true });
       setAuthError('');
@@ -144,6 +145,25 @@ const useFirebase=()=>{
          }).catch((error) => {
         // An error happened.
 });
+    }
+
+
+
+    // save user information
+    const saveUser = (email,name,method)=>{
+      const user = {email,name};
+
+      fetch("http://localhost:5000/users" ,{
+        method:method,
+        headers:{
+          "content-type":"application/json"
+        },
+
+        body:JSON.stringify(user)
+      })
+      .then()
+
+
     }
 
 

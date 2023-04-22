@@ -15,6 +15,7 @@ import PrivateRoute from './context/PrivateRoute/PrivateRoute';
 
 
 
+
 function App() {
   return (
     <div className='App' >
@@ -34,11 +35,10 @@ function App() {
           
           <Dashboard></Dashboard>
         </PrivateRoute>
-
-
       }
-  
+      
       />
+      
 
       <Route path='*' element={<NoPage/>}/>
 

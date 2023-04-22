@@ -9,7 +9,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter} from 'react-router-dom';
+
 
 
 
@@ -19,6 +20,7 @@ const queryClient = new QueryClient()
 root.render(
   <React.StrictMode>
      <QueryClientProvider client={queryClient}>
+    
     <BrowserRouter>
    <AuthProvider>
     
