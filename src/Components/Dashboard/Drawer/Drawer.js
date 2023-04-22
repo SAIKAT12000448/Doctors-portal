@@ -18,11 +18,13 @@ import Typography from '@mui/material/Typography';
 import Calender from '../../Home/Shared/Calender/Calender';
 import { Grid } from '@mui/material';
 import AppointmentUser from '../AppointmentUser/AppointmentUser';
+import { NavLink } from 'react-router-dom';
+
 
 const drawerWidth = 240;
 
 const DrawerBar = () => { 
-
+  
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const[date,setDate] = React.useState(new Date());
     const handleDrawerToggle = () => {
@@ -31,9 +33,12 @@ const DrawerBar = () => {
 
     
     const DrawerBar = (
+
         <div>
           <Toolbar />
           <Divider />
+          <NavLink to="/appointment">Appointment</NavLink><br />
+          <NavLink to="/makeAdmin">MakeAdmin</NavLink>
           <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem key={text} disablePadding>
@@ -133,10 +138,13 @@ const DrawerBar = () => {
              setDate={setDate}
             ></AppointmentUser>
       </Grid>
- 
+            
       </Grid>
         </Box>
+        
       </Box>
+
+      
     );
 };
 
