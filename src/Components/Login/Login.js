@@ -8,11 +8,12 @@ import { NavLink} from 'react-router-dom';
 import { useState } from 'react';
 import useAuth from '../../context/useAuth';
 import Navigation from '../Home/Shared/Navigation';
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
 
   const[LoginData,setLoginData] = useState({});
-  const{isLoading,user,authError,logIn} = useAuth();
+  const{isLoading,user,authError,logIn,signInWithGoogle} = useAuth();
  
 
 
@@ -31,6 +32,11 @@ const Login = () => {
   const handleOnSUbmit=e=>{
     logIn(LoginData.email,LoginData.password)
     e.preventDefault();
+
+  }
+
+  const handleGooglesignin=()=>{
+    signInWithGoogle();
 
   }
     return (
@@ -68,10 +74,13 @@ const Login = () => {
  
           <Button type='submit' sx={{width:'75%',m:1}} variant='contained'>Login</Button>
         </form>
-        <NavLink to='/register'>New User? Please Register!</NavLink>
-{/*           
-        <NavLink style={{textDecoration:'none'}} to='/register'><Button variant='text'>New User? Please Register!</Button></NavLink> */}
-        
+        {/* <NavLink to='/register'>New User? Please Register!</NavLink> */}
+          
+        <NavLink style={{textDecoration:'none'}} to='/register'><Button variant='text'>New User? Please Register!</Button></NavLink>
+
+<p>-------------------------</p>
+<Button style={{backgroundColor:"#e6e6e6",color:"black",fontWeight:"800"}} onClick={handleGooglesignin} variant="contained"><FcGoogle style={{fontSize:"29",marginRight:"0.6rem"}}/>Google Sign IN</Button>
+
         </>
       }
       {

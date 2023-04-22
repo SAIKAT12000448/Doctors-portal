@@ -6,7 +6,15 @@ import Footer from '../../Home/Shared/Footer';
 
 
 const Appointment = () => {
-        const [date, setDate] = React.useState(new Date());
+    // const currentDate = new Date();
+
+    // const year = currentDate.getFullYear();
+    // const month = currentDate.getMonth()+1;
+    // const day = currentDate.getDate();
+    // const formattedDate = `${month}/${day}/${year}`;
+      const newDate  = new Date();
+    
+        const [date, setDate] = React.useState(newDate);
     return (
         <div>
             <Navigation></Navigation>

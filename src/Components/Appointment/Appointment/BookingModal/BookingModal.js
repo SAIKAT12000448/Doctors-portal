@@ -1,4 +1,3 @@
-// import React, { useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -164,7 +163,7 @@ const BookingModal = ({handleModalClose,booking,open,date,slots,refetch}) => {
           
           sx={{width:"90%" ,m:1 }}
           id="outlined-size-small"
-          defaultValue={date.toString()}
+          defaultValue={date.toLocaleDateString()}
           name='date'
           size="small"
         />

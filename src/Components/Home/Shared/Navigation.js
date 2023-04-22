@@ -93,19 +93,19 @@ const Navigation = () => {
           </Typography></MenuItem>
 
           
-          <Link  style={styleNav} to='/home'>  <MenuItem>Home </MenuItem> </Link>
+          <Link onClick={handleClose}  style={styleNav} to='/home'>  <MenuItem>Home </MenuItem> </Link>
 
         
-          <Link style={styleNav} to='/appointment'><MenuItem>Appointment</MenuItem></Link> 
+          <Link onClick={handleClose} style={styleNav} to='/appointment'><MenuItem>Appointment</MenuItem></Link> 
           
        
-    <Link style={styleNav} to='/dashboard'> 
+    <Link onClick={handleClose} style={styleNav} to='/dashboard'> 
         <MenuItem>Dashboard</MenuItem></Link>
           {
           user?.email ? 
           <MenuItem onClick={logOut}  style={styleNav} color="inherit">Logout</MenuItem>:
            
-          <Link style={styleNav} to='/login'><MenuItem color="inherit">Login</MenuItem></Link>
+          <Link onClick={handleClose} style={styleNav} to='/login'><MenuItem color="inherit">Login</MenuItem></Link>
          }
       </div>
       </Menu>

@@ -1,10 +1,9 @@
+import { Box, Typography } from '@mui/material';
 import React from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import './Calender.css'
 
-
-import TextField from '@mui/material/TextField';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
 
 
@@ -12,22 +11,23 @@ import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 // var today = new Date();
 
 const Calender = ({date,setDate}) => {
-    
+ 
 
+      
     return (
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        
-      <StaticDatePicker
-        displayStaticWrapperAs="desktop"
-        
-        value={date}
-        onChange={(newValue) => {
-          setDate(newValue);
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </LocalizationProvider>
-  
+      <>
+
+             <Typography sx={{color:"",marginTop:"10px"}} variant='h6'> Calender</Typography>
+
+             <Box style={{marginTop:"1rem"}}>
+             <Calendar className="calender_style" onChange={setDate} date={date} />
+
+             </Box>
+
+      
+             
+         
+      </>
     );
 };
 

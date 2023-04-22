@@ -50,7 +50,7 @@ import { useQuery } from 'react-query';
 const AvailableAppointment = ({date}) => {
 
     // const[bookings,setBookings]= useState([]);
-
+console.log(date.toString());
 // query uses
 
 const {data:bookings=[],refetch} =
@@ -76,7 +76,7 @@ const {data:bookings=[],refetch} =
     
     return (
         <Container>
-            <Typography variant='h5' sx={{fontWeight:'600', my:'20px',color:'#154b4f'}}>Available Appointment on {date.toString()}</Typography>
+            <Typography variant='h5' sx={{fontWeight:'600', my:'20px',color:'#154b4f'}}>Available Appointment on {date.toLocaleDateString()}</Typography>
 
             <Grid container spacing={2}>
             {
