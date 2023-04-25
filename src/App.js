@@ -37,7 +37,13 @@ function App() {
         </PrivateRoute>
       }
       
-      />
+      >
+       
+        </Route>
+
+
+
+    
       
 
       <Route path='*' element={<NoPage/>}/>

@@ -38,7 +38,7 @@ const DrawerBar = () => {
           <Toolbar />
           <Divider />
           <NavLink to="/appointment">Appointment</NavLink><br />
-          <NavLink to="/makeAdmin">MakeAdmin</NavLink>
+          <NavLink to="/makeadmin">MakeAdmin</NavLink>
           <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem key={text} disablePadding>
