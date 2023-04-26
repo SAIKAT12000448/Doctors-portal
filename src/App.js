@@ -12,6 +12,8 @@ import Register from './Components/Login/Register/Register';
 import NoPage from './Components/NoPage/NoPage';
 import ScrollButton from './Components/ScrollButton/ScrollButton';
 import PrivateRoute from './context/PrivateRoute/PrivateRoute';
+import Makeadmin from './Components/Dashboard/makeAdmin/Makeadmin';
+import UserAppointments from './Components/Dashboard/userinfo/UserAppointments';
 
 
 
@@ -37,18 +39,14 @@ function App() {
         </PrivateRoute>
       }
       
-<<<<<<< HEAD
       >
-       
+       <Route path='' element={<UserAppointments></UserAppointments>}/>
+       <Route path='makeadmin' element={<Makeadmin></Makeadmin>}/>
+       <Route path='userAppointment' element={<UserAppointments></UserAppointments>}/>
         </Route>
 
 
 
-    
-=======
-      />
->>>>>>> a6d4ff8490f5e62b07161ca321364c528209a138
-      
 
       <Route path='*' element={<NoPage/>}/>
 
