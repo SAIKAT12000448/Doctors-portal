@@ -15,10 +15,10 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Calender from '../../Home/Shared/Calender/Calender';
-import { Grid } from '@mui/material';
-import AppointmentUser from '../AppointmentUser/AppointmentUser';
-import { NavLink } from 'react-router-dom';
+
+
+import { NavLink, Outlet } from 'react-router-dom';
+// import Makeadmin from '../makeAdmin/Makeadmin';
 
 
 const drawerWidth = 240;
@@ -26,7 +26,6 @@ const drawerWidth = 240;
 const DrawerBar = () => { 
   
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const[date,setDate] = React.useState(new Date());
     const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
     };
@@ -37,14 +36,20 @@ const DrawerBar = () => {
         <div>
           <Toolbar />
           <Divider />
-          <NavLink to="/appointment">Appointment</NavLink><br />
-<<<<<<< HEAD
-          <NavLink to="/makeadmin">MakeAdmin</NavLink>
-=======
-          <NavLink to="/makeAdmin">MakeAdmin</NavLink>
->>>>>>> a6d4ff8490f5e62b07161ca321364c528209a138
+         
+
+          {/* <NavLink to="/makeAdmin">MakeAdmin</NavLink> */}
+       
           <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {[ <NavLink style={{display:'block',padding:"0.2rem",textDecoration:"none"}} to="/appointment">Appointment</NavLink>,
+
+<NavLink to="/dashboard/makeadmin">MakeAdmin</NavLink>,
+
+<NavLink to="/dashboard/userAppointment">My Appointment</NavLink>,
+
+
+
+].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -85,9 +90,7 @@ const DrawerBar = () => {
             <Typography variant="h6" noWrap component="div">
               Dashboard
             </Typography>
-            <Typography variant="h6" noWrap component="div">
-              Home
-            </Typography>
+           
             </Box>
           </Toolbar>
         </AppBar>
@@ -128,22 +131,8 @@ const DrawerBar = () => {
           sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
         >
           <Toolbar />
-          <Grid container spacing={2}>
-     <Grid item xs={12} sm={5}>
-            <Calender
-            date={date}
-            setDate={setDate}
-            ></Calender>
-     </Grid>
      
-     <Grid item xs={12} sm={7}>
-            <AppointmentUser
-             date={date}
-             setDate={setDate}
-            ></AppointmentUser>
-      </Grid>
-            
-      </Grid>
+      <Outlet></Outlet>
         </Box>
         
       </Box>
