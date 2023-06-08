@@ -17,7 +17,7 @@ import './navigation.css'
 const Navigation = () => {
   const {user,logOut} =  useAuth();
 
-
+  console.log(user.displayName);
 
   const styleNav={
      textDecoration:'none',
@@ -49,8 +49,9 @@ const Navigation = () => {
         <Box sx={{ flexGrow: 1,width:'100%',top:'0' }}>
         
       <AppBar style={{backgroundColor:"#154b4f"}} position="static">
+      
         <Toolbar>
-
+        
 
        {/* icon Button */}
        <div
@@ -88,12 +89,18 @@ const Navigation = () => {
         }}
       >
       <div style={{backgroundColor:"#154b4f"}}>
-      <MenuItem> <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+      <MenuItem> <Typography variant="h6" component ="div" sx={{ flexGrow: 1 }}>
             Doctors portal
           </Typography></MenuItem>
+    
 
           
-          <Link onClick={handleClose}  style={styleNav} to='/home'>  <MenuItem>Home </MenuItem> </Link>
+          <Link onClick={handleClose}  style={styleNav} to='/home'>  <MenuItem>Home</MenuItem> </Link>
+
+          
+          
+          
+                    <Link onClick={handleClose}  style={styleNav} to='/home'>  <MenuItem>ghghh</MenuItem> </Link>
 
         
           <Link onClick={handleClose} style={styleNav} to='/appointment'><MenuItem>Appointment</MenuItem></Link> 
@@ -123,7 +130,7 @@ const Navigation = () => {
        <Typography className='orient' variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Doctors portal
           </Typography>
-     <Button className='orient'><Link style={styleNav} to='/home'>Home</Link></Button> 
+     <Button className='orient'><Link style={styleNav} to='/home'>Home {user.displayName}</Link></Button> 
 
         
           <Button className='orient'><Link style={styleNav} to='/appointment'>Appointment</Link></Button> 

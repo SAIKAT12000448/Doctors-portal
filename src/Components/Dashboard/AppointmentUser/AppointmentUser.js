@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useAuth from '../../../context/useAuth';
+// import { useQuery } from 'react-query';
 
 
 
@@ -28,7 +29,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
     // hide last border
     '&:last-child td, &:last-child th': {
-      border: 0,
+      border: 0,  
     },
   }));
 
@@ -36,14 +37,23 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   
 const AppointmentUser = ({date}) => {
     const[AppointmentUser,setAppointments] = useState([]);
-    const{user} = useAuth();
+    const{user,token} = useAuth();
       
     useEffect(()=>{
-        const url = `http://localhost:5000/appointmentList?email=${user.email}&date=${date}`;
-        fetch(url)
+        const url = `http://localhost:5000/appointmentList?email=${user?.email}&date=${date}`;
+        fetch(url,{
+          headers:{
+            authorization: `Bearer ${token}`
+          }
+        })
         .then(res=>res.json())
-        .then(data=>setAppointments(data));
+        .then(data=>setAppointments(data))
+        .catch(error => console.error(error));
+
     },[date])
+
+
+
 
 
     return (
@@ -59,7 +69,7 @@ const AppointmentUser = ({date}) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {AppointmentUser.map((row) => (
+            {AppointmentUser?.map((row) => (
               <StyledTableRow key={row._id}>
                 <StyledTableCell component="th" scope="row">
                   {row.name}

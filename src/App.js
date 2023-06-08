@@ -14,6 +14,9 @@ import ScrollButton from './Components/ScrollButton/ScrollButton';
 import PrivateRoute from './context/PrivateRoute/PrivateRoute';
 import Makeadmin from './Components/Dashboard/makeAdmin/Makeadmin';
 import UserAppointments from './Components/Dashboard/userinfo/UserAppointments';
+import AllUsers from './Components/Dashboard/AllUsers/AllUsers';
+import AdminRoute from './context/PrivateRoute/AdminRoute';
+import AddDoctor from './Components/Dashboard/AddDoctor/AddDoctor';
 
 
 
@@ -43,6 +46,16 @@ function App() {
        <Route path='' element={<UserAppointments></UserAppointments>}/>
        <Route path='makeadmin' element={<Makeadmin></Makeadmin>}/>
        <Route path='userAppointment' element={<UserAppointments></UserAppointments>}/>
+       <Route path='allusers' element={
+<AdminRoute><AllUsers></AllUsers></AdminRoute>
+
+       }/>
+       <Route path='addDoctor' element={
+<AdminRoute><AddDoctor></AddDoctor></AdminRoute>
+
+       }/>
+
+
         </Route>
 
 

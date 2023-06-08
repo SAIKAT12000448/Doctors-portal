@@ -5,27 +5,33 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
+
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 
 import { NavLink, Outlet } from 'react-router-dom';
+import useAuth from '../../../context/useAuth';
+import useAdmin from '../../../hooks/useAdmin';
 // import Makeadmin from '../makeAdmin/Makeadmin';
 
 
 const drawerWidth = 240;
 
 const DrawerBar = () => { 
-  
+    
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const{user} = useAuth();
+    const [isAdmin] = useAdmin(user?.email)
+
+
     const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
     };
@@ -43,9 +49,12 @@ const DrawerBar = () => {
           <List>
         {[ <NavLink style={{display:'block',padding:"0.2rem",textDecoration:"none"}} to="/appointment">Appointment</NavLink>,
 
-<NavLink to="/dashboard/makeadmin">MakeAdmin</NavLink>,
-
-<NavLink to="/dashboard/userAppointment">My Appointment</NavLink>,
+      <NavLink style={{display:'block',padding:"0.2rem",textDecoration:"none"}} to="/dashboard/userAppointment">My Appointment</NavLink>,
+      
+      <NavLink style={{display:'block',padding:"0.2rem",textDecoration:"none"}} to="/dashboard/makeadmin">MakeAdmin</NavLink>,
+      isAdmin && <NavLink style={{display:'block',padding:"0.2rem",textDecoration:"none"}} to="/dashboard/addDoctor">Add Doctor</NavLink>,      
+      isAdmin && <NavLink style={{display:'block',padding:"0.2rem",textDecoration:"none"}} to="/dashboard/allusers">All Users</NavLink>,
+     
 
 
 
@@ -53,7 +62,7 @@ const DrawerBar = () => {
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}   */}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>

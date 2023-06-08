@@ -1,6 +1,6 @@
 import { useState } from "react";
 import initializeFirebaseApp from "../Components/Login/Firebase/firebase.init";
-import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged,signInWithEmailAndPassword,GoogleAuthProvider, signInWithPopup,updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged,signInWithEmailAndPassword,GoogleAuthProvider,getIdToken, signInWithPopup,updateProfile } from "firebase/auth";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -13,7 +13,8 @@ const useFirebase=()=>{
     const[user,setUser] = useState({});
     const[isLoading,setIsLoading] = useState(true);
     const[authError,setAuthError] = useState('');
-
+    const[admin,setAdmin] = useState(false);
+    const[token,setIdToken] = useState('');
 
   
     const Googleprovider = new GoogleAuthProvider();
@@ -47,8 +48,7 @@ const useFirebase=()=>{
       // Error occurred
     });
 
-      
-    navigate(from, { replace: true });
+     
     setAuthError('');
     // ...
   })
@@ -122,6 +122,9 @@ const useFirebase=()=>{
     const unsubscribed = onAuthStateChanged(auth, (user) => {
         if (user) {
          setUser(user);
+         getIdToken(user).then(idToken=>{
+          setIdToken(idToken);
+         })
          setIsLoading(false)
          console.log(user);
         } else {
@@ -161,17 +164,46 @@ const useFirebase=()=>{
 
         body:JSON.stringify(user)
       })
-      .then()
-
+      .then(data=>{
+        // getUserToken(email)
+              navigate(from, { replace: true });
+      })
 
     }
+   
+    // const getUserToken = email =>{
+    //   fetch(`http://localhost:5000/jwt?email=${email}`) 
+    //   .then(res=>res.json())
+    //   .then(data=>{
+    //     console.log(data)
+    //     if(data.AccessToken){
+
+    //        localStorage.setItem('AccessToken',data.AccessToken)
+    //     }
+    //   })
+    // }
+
+
+
+
+
+    useEffect(()=>{
+          fetch(`http://localhost:5000/users/${user.email}`)
+          .then(res=>res.json())
+          .then(data=>{
+            setAdmin(data.admin)
+          })
+    },[user.email])
+
 
 
     return{
       
         user,
         isLoading,
+        token,
         authError,
+        admin,
         registerUser,
         signInWithGoogle,
         logOut,
@@ -179,4 +211,4 @@ const useFirebase=()=>{
     }
 
 }
-export default useFirebase;
+export default useFirebase; 
