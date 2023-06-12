@@ -17,6 +17,7 @@ import UserAppointments from './Components/Dashboard/userinfo/UserAppointments';
 import AllUsers from './Components/Dashboard/AllUsers/AllUsers';
 import AdminRoute from './context/PrivateRoute/AdminRoute';
 import AddDoctor from './Components/Dashboard/AddDoctor/AddDoctor';
+import ManageDoctor from './Components/Dashboard/ManageDoctor/ManageDoctor';
 
 
 
@@ -54,6 +55,13 @@ function App() {
 <AdminRoute><AddDoctor></AddDoctor></AdminRoute>
 
        }/>
+
+
+       <Route path='manageDoctors' element={
+<AdminRoute><ManageDoctor></ManageDoctor></AdminRoute>
+
+       }/>
+     
 
 
         </Route>

@@ -52,6 +52,7 @@ const DrawerBar = () => {
       <NavLink style={{display:'block',padding:"0.2rem",textDecoration:"none"}} to="/dashboard/userAppointment">My Appointment</NavLink>,
       
       <NavLink style={{display:'block',padding:"0.2rem",textDecoration:"none"}} to="/dashboard/makeadmin">MakeAdmin</NavLink>,
+      <NavLink style={{display:'block',padding:"0.2rem",textDecoration:"none"}} to="/dashboard/manageDoctors">Manage Doctors</NavLink>,
       isAdmin && <NavLink style={{display:'block',padding:"0.2rem",textDecoration:"none"}} to="/dashboard/addDoctor">Add Doctor</NavLink>,      
       isAdmin && <NavLink style={{display:'block',padding:"0.2rem",textDecoration:"none"}} to="/dashboard/allusers">All Users</NavLink>,
      
