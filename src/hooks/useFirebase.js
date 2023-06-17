@@ -156,7 +156,7 @@ const useFirebase=()=>{
     const saveUser = (email,name,method)=>{
       const user = {email,name};
 
-      fetch("http://localhost:5000/users" ,{
+      fetch("https://doctor-strange-server.vercel.app/users" ,{
         method:method,
         headers:{
           "content-type":"application/json"
@@ -188,7 +188,7 @@ const useFirebase=()=>{
 
 
     useEffect(()=>{
-          fetch(`http://localhost:5000/users/${user.email}`)
+          fetch(`https://doctor-strange-server.vercel.app/users/${user.email}`)
           .then(res=>res.json())
           .then(data=>{
             setAdmin(data.admin)

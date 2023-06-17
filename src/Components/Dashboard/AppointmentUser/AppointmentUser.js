@@ -8,6 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useAuth from '../../../context/useAuth';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 // import { useQuery } from 'react-query';
 
 
@@ -40,7 +42,7 @@ const AppointmentUser = ({date}) => {
     const{user,token} = useAuth();
       
     useEffect(()=>{
-        const url = `http://localhost:5000/appointmentList?email=${user?.email}&date=${date}`;
+        const url = `https://doctor-strange-server.vercel.app/appointmentList?email=${user?.email}&date=${date}`;
         fetch(url,{
           headers:{
             authorization: `Bearer ${token}`
@@ -65,6 +67,7 @@ const AppointmentUser = ({date}) => {
               <StyledTableCell align="right">Treatment</StyledTableCell>
               <StyledTableCell align="right">Time</StyledTableCell>
               <StyledTableCell align="right">phone</StyledTableCell>
+              <StyledTableCell align="right">price</StyledTableCell>
             
             </TableRow>
           </TableHead>
@@ -77,6 +80,23 @@ const AppointmentUser = ({date}) => {
                 <StyledTableCell align="right">{row.treatmentname}</StyledTableCell>
                 <StyledTableCell align="right">{row.slot}</StyledTableCell>
                 <StyledTableCell align="right">{row.phone}</StyledTableCell>
+                <StyledTableCell align="right">
+
+                {
+                  row.price && !row.paid && <Link
+                  to={`/dashboard/payment/${row._id}`}
+                  >
+                  <Button variant='contained'>
+                    pay
+                  </Button></Link>
+                }
+                {
+                  row.price && row.paid && <span>paid</span>
+                }
+
+
+
+                </StyledTableCell>
             
               </StyledTableRow>
             ))}

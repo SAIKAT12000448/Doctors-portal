@@ -60,7 +60,7 @@ const {data:bookings=[],refetch} =
             queryKey: ['bookings',date],
             queryFn:async()=>{
                 
-            const res = await fetch(`http://localhost:5000/appointmentOptions?date=${date}`);
+            const res = await fetch(`https://doctor-strange-server.vercel.app/appointmentOptions?date=${date}`);
             const data = await res.json();
             return data;
 }

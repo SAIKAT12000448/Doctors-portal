@@ -130,7 +130,7 @@ const Navigation = () => {
        <Typography className='orient' variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Doctors portal
           </Typography>
-     <Button className='orient'><Link style={styleNav} to='/home'>Home {user.displayName}</Link></Button> 
+     <Button className='orient'><Link style={styleNav} to='/home'>Home</Link></Button> 
 
         
           <Button className='orient'><Link style={styleNav} to='/appointment'>Appointment</Link></Button> 

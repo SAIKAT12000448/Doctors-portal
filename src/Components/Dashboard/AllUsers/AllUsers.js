@@ -69,7 +69,7 @@ const AllUsers = () => {
 
     const handleOnSubmit=(id)=>{
         console.log(id)
-        fetch(`http://localhost:5000/users/admin/${id}`,{
+        fetch(`https://doctor-strange-server.vercel.app/users/admin/${id}`,{
                method:'PUT' ,
                authorization: `Bearer ${token}`
   

@@ -55,7 +55,7 @@ const ManageDoctor = () => {
     console.log(deletingDoctor);
 
    useEffect(()=>{
-           fetch('http://localhost:5000/getDoctors')
+           fetch('https://doctor-strange-server.vercel.app/getDoctors')
            .then(res=>res.json())
            .then(data=>setDoctors(data))
    },[])

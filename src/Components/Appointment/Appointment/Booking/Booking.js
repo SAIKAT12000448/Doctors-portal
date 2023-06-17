@@ -19,6 +19,7 @@ const Booking = ({booking,date,refetch}) => {
                           <Typography sx={{marginTop:"10px",color:'#154b4f'}} variant='h6'>{name}</Typography>
                           <Typography sx={{fontSize:"15",fontWeight:"500"}} variant='p'>{slots.length>0 ? slots[0]:'Try another day'}</Typography>
                           <Typography component='div' variant='caption'>{slots.length} {slots.length>1? 'SPACES':'SPACE'} AVAILABLE</Typography>
+                          <Typography component='div' variant='caption'>price: <b>{booking.price}</b></Typography>
                           <Button onClick={handleModalOpen} disabled={slots.length===0} sx={{backgroundColor:'#154b4f'}} variant="contained">Book Appointment</Button>      
                             
 
@@ -34,6 +35,7 @@ const Booking = ({booking,date,refetch}) => {
                       key={booking._id}
                       handleModalClose={handleModalClose}
                       slots={slots}
+                      
                       handleModalOpen={handleModalOpen}
                       booking={booking}
                       date={date}

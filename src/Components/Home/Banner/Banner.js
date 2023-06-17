@@ -4,7 +4,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import chair from '../images/chair.png';
 import BG from '../images/bg.png'
-import { Button, Typography } from '@mui/material';
+import { Button, MenuItem, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 
@@ -41,7 +42,7 @@ const Banner = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta saepe sit dolores quaerat, reprehenderit debitis ullam? Minus dolorem dicta quis.
             </Typography>
             <Button variant='contained'>
-                 GET APPOINTMENT
+            <Link style={{textDecoration:"none",color:"white"}} to='/appointment'><MenuItem>GET APPOINTMENT</MenuItem></Link> 
             </Button>
           
          </Box>

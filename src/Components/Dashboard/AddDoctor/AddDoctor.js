@@ -36,7 +36,7 @@ const AddDoctor = () => {
           }
 
          if(imgData.success){
-          fetch('http://localhost:5000/doctors', {
+          fetch('https://doctor-strange-server.vercel.app/doctors', {
             method:'POST',
             headers:{
               "content-type":"application/json"

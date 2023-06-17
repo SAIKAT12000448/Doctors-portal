@@ -42,7 +42,8 @@ const BookingModal = ({handleModalClose,booking,open,date,slots,refetch}) => {
   const email = form.email.value;
   const phone = form.phone.value;
   const date = form.date.value;
-  console.log(slot,name,email,phone,date);
+  const price = form.price.value
+  console.log(slot,name,email,phone,date,price);
 
 
    const bookingData={
@@ -51,7 +52,8 @@ const BookingModal = ({handleModalClose,booking,open,date,slots,refetch}) => {
     slot,
     email,
     phone,
-    date
+    date,
+    price
 
    }
 
@@ -59,7 +61,7 @@ const BookingModal = ({handleModalClose,booking,open,date,slots,refetch}) => {
 
 
   
-    fetch("http://localhost:5000/bookingmodal",{
+    fetch("https://doctor-strange-server.vercel.app/bookingmodal",{
       method:"POST",
       headers:{
         'content-type' : 'application/json'
@@ -159,14 +161,25 @@ const BookingModal = ({handleModalClose,booking,open,date,slots,refetch}) => {
         />
 
             <TextField
-            
-          
           sx={{width:"90%" ,m:1 }}
           id="outlined-size-small"
           defaultValue={date.toLocaleDateString()}
           name='date'
           size="small"
         />
+
+
+            <TextField
+          sx={{width:"90%" ,m:1 }}
+          id="outlined-size-small"
+          disabled
+          defaultValue={booking.price}
+          name='price'
+          size="small"
+        />
+
+
+
         <div style={{textAlign:'right',width:'90%'}}>
         <Button sx={{px:7}}  type='submit' variant="contained">Send</Button>
         </div>

@@ -1,5 +1,5 @@
 
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 
 import './App.css';
 import { Toaster } from 'react-hot-toast';
@@ -18,7 +18,12 @@ import AllUsers from './Components/Dashboard/AllUsers/AllUsers';
 import AdminRoute from './context/PrivateRoute/AdminRoute';
 import AddDoctor from './Components/Dashboard/AddDoctor/AddDoctor';
 import ManageDoctor from './Components/Dashboard/ManageDoctor/ManageDoctor';
+import Payment from './Components/Dashboard/Payment/Payment';
+import { loadStripe } from '@stripe/stripe-js';
 
+
+const stripePromise = loadStripe("pk_test_51NJf5NGr9ldt4Z8fi2HQcykV8EdjllpV0jo0pJ6WKzKS0ZjEM0cGO2nYhm4wJcTejOd4sAbfg1jchoqEw5Mf2qco00Bn7I113o");
+console.log(stripePromise);
 
 
 
@@ -61,6 +66,17 @@ function App() {
 <AdminRoute><ManageDoctor></ManageDoctor></AdminRoute>
 
        }/>
+       <Route path='payment/:id' element={
+<AdminRoute>
+
+
+  <Payment></Payment>
+
+
+</AdminRoute>
+}
+
+/>
      
 
 
